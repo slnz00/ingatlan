@@ -1,12 +1,13 @@
 const fs = require('fs')
+const path = require('path')
 const fetch = require('node-fetch')
 const { JSDOM } = require('jsdom')
 const Handlebars = require('handlebars')
 const open = require('opn');
 
-function readFile(path, failOnError = false) {
+function readFile(filePath, failOnError = false) {
   try {
-    return fs.readFileSync(path, 'utf8')
+    return fs.readFileSync(path.normalize(filePath), 'utf8')
   } catch (error) {
     if (!failOnError) {
       return null
@@ -15,9 +16,9 @@ function readFile(path, failOnError = false) {
   }
 }
 
-function writeFile(path, data, failOnError = false) {
+function writeFile(filePath, data, failOnError = false) {
   try {
-    fs.writeFileSync(path, data)
+    fs.writeFileSync(path.normalize(filePath), data)
   } catch (error) {
     if (!failOnError) {
       console.error(error)
@@ -28,7 +29,7 @@ function writeFile(path, data, failOnError = false) {
 }
 
 const configManager = {
-  _path: 'data/config.json',
+  _path: path.normalize('data/config.json'),
   _value: null,
 
   default: () => ({
@@ -140,15 +141,15 @@ function saveResultsToHtml(results) {
     return
   }
 
-  const path = __dirname + `/../data/results/${new Date().toISOString()}.html`
+  const htmlPath = path.normalize(__dirname + `/../data/results/${new Date().toISOString()}.html`)
   const templateSource = readFile('templates/new-apartments.html', true)
   const template = Handlebars.compile(templateSource)
   const generatedHtml = template({ results })
 
-  writeFile(path, generatedHtml)
+  writeFile(htmlPath, generatedHtml)
 
   console.log(`Scraped ${results.length} new apartments, opening browser...`)
-  open(path)
+  open(htmlPath)
 }
 
 async function main() {

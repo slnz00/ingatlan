@@ -3,7 +3,8 @@ const path = require('path')
 const fetch = require('node-fetch')
 const { JSDOM } = require('jsdom')
 const Handlebars = require('handlebars')
-const open = require('open');
+const open = require('open')
+const moment = require('moment')
 
 function readFile(filePath, failOnError = false) {
   try {
@@ -37,7 +38,7 @@ const configManager = {
       startPrice: 120,
       endPrice: 175,
       minArea: 40,
-      districts: ['XI', 'XII', 'V'],
+      districts: ['XI', 'XII'],
       excludeWithoutImage: true,
     },
     scrapedUrls: []
@@ -64,7 +65,7 @@ function getUrl(page) {
 
   let districtsStr = 'budapest'
   if (districts.length) {
-    districtsStr = districts.map(d => `${d}-ker`).join('+')
+    districtsStr = districts.map(d => `${d.toLowerCase()}-ker`).join('+')
   }
 
   return `https://ingatlan.com/lista/kiado+lakas+${districtsStr}+havi-${startPrice}-${endPrice}-ezer-Ft+${minArea}-m2-felett+ar-szerint?page=${page}`
@@ -141,7 +142,8 @@ function saveResultsToHtml(results) {
     return
   }
 
-  const htmlPath = path.normalize(__dirname + `/../data/results/${new Date().toISOString()}.html`)
+  const fileName = moment().format('YYYY-MM-DD_HH-mm-ss')
+  const htmlPath = path.normalize(__dirname + `/../data/results/${fileName}.html`)
   const templateSource = readFile('templates/new-apartments.html', true)
   const template = Handlebars.compile(templateSource)
   const generatedHtml = template({ results })

@@ -1,2 +1,4 @@
 data/config.json
+data/results
+!data/results/.gitkeep
 node_modules

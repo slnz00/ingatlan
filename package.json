@@ -1,5 +1,5 @@
 {
-  "name": "Ingatlan",
+  "name": "ingatlan",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -7,7 +7,7 @@
     "handlebars": "^4.7.6",
     "jsdom": "^16.2.2",
     "node-fetch": "^2.6.0",
-    "opn": "^6.0.0"
+    "open": "^7.0.4"
   },
   "scripts": {
     "start": "node src/scrape.js"

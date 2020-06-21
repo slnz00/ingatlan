@@ -3,7 +3,7 @@ const path = require('path')
 const fetch = require('node-fetch')
 const { JSDOM } = require('jsdom')
 const Handlebars = require('handlebars')
-const open = require('opn');
+const open = require('open');
 
 function readFile(filePath, failOnError = false) {
   try {

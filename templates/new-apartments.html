@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns#" lang="hu" xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/openlayers/2.13.1/OpenLayers.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/augment.js/1.0.0/augment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/0.5.9/lunr.min.js"></script>
+    <!-- <script async src="https://cdnjs.cloudflare.com/ajax/libs/algoliasearch/3.30.0/algoliasearchLite.min.js"></script> -->
+    <script src="//components.ingatlan.com/adreport-5.0.2.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;subset=latin-ext" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Red+Hat+Display:300,400,500,700&display=swap&subset=latin-ext" rel="stylesheet">
+    <meta name="title" content="Albérlet XI. kerület, XII. kerület, kiadó lakások XI. kerületben, XII. kerületben - ingatlan.com"/>
+    <meta name="description" content="Kiadó albérletet keresel XI. kerületben, XII. kerületben? 162 kiadó XI. kerületi, XII. kerületi albérlet az ingatlan.com-on."/>
+    <meta name="viewport" content="width=1000, target-densitydpi=device-dpi, initial-scale=0, maximum-scale=1, user-scalable=yes"/>
+    <meta name="customtarget"
+          content="dXNlcmRiX2lkPTQ2JmFkX2RheW9mbW9udGg9MjEmYWRfd2Vla29meWVhcj0yNSZhZF9wYXJvc2hldD1OJmFkX2VydGVrZXNpdGVzX3RpcHVzYT0yJmFkX2luZ2F0bGFuX3RpcHVzPTEwMjUmYWRfYXJtaW49MTcwMDAwJmFkX2FybWF4PTE4MDAwMCZhZF9rZXJ1bGV0PTMwNzImYWRfZWxoZWx5ZXprZWRlcz0xNjkwODQyNw=="/>
+    <meta property="og:title" content="Albérlet XI. kerület, XII. kerület, kiadó lakások XI. kerületben, XII. kerületben - ingatlan.com"/>
+    <meta property="og:description" content="Kiadó albérletet keresel XI. kerületben, XII. kerületben? 162 kiadó XI. kerületi, XII. kerületi albérlet az ingatlan.com-on."/>
+    <meta property="og:url" content="https://ingatlan.com//lista/kiado+lakas+xi-ker+xii-ker+havi-170-180-ezer-Ft+%24%7BminArea%7D-m2-felett+ar-szerint"/>
+    <meta property="og:image" content="https://ot.ingatlancdn.com/d2/bc/31525479_199711591_l.jpg"/>
+    <title>Albérlet XI. kerület, XII. kerület, kiadó lakások XI. kerületben, XII. kerületben - ingatlan.com</title>
+    <meta charset="utf-8">
+    <link rel="dns-prefetch" href="//code.jquery.com">
+    <link rel="dns-prefetch" href="//imgs.adverticum.net">
+    <link rel="shortcut icon" href="https://ingatlan.com/images/favicons/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="https://ingatlan.com/images/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://ingatlan.com/images/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://ingatlan.com/images/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://ingatlan.com/images/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://ingatlan.com/images/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://ingatlan.com/images/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://ingatlan.com/images/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://ingatlan.com/images/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://ingatlan.com/images/favicons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="https://ingatlan.com/images/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="https://ingatlan.com/images/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://ingatlan.com/images/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="mask-icon" href="https://ingatlan.com/images/favicons/safari-pinned-tab.svg" color="#000000">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="/images/favicons/msapplication-square-144x144.png">
+    <meta name="theme-color" content="#d35630">
+    <meta name="msapplication-square70x70logo" content="/images/favicons/msapplication-square-70x70.png">
+    <meta name="msapplication-square150x150logo" content="/images/favicons/msapplication-square-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/images/favicons/msapplication-wide-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/images/favicons/msapplication-square-310x310.png">
+    <meta name="apple-itunes-app" content="app-id=1319814184"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link rel="alternate" media="only screen and (max-width: 640px)"
+          href="https://m.ingatlan.com/kiado+lakas+xi-ker+xii-ker+havi-170-180-ezer-Ft+%24%7BminArea%7D-m2-felett+ar-szerint">
+    <link rel="alternate" hreflang="hu" href="https://ingatlan.com/lista/kiado+lakas+xi-ker+xii-ker+havi-170-180-ezer-Ft+${minArea}-m2-felett+ar-szerint"/>
+    <link rel="alternate" hreflang="en" href="https://realestatehungary.hu/lista/kiado+lakas+xi-ker+xii-ker+havi-170-180-ezer-Ft+${minArea}-m2-felett+ar-szerint"/>
+    <link rel="alternate" hreflang="de" href="https://immobilienungarn.net/lista/kiado+lakas+xi-ker+xii-ker+havi-170-180-ezer-Ft+${minArea}-m2-felett+ar-szerint"/>
+    <link rel="canonical" href="https://ingatlan.com/xi-ker/kiado+lakas"/>
+    <link rel="next" href="https://ingatlan.com/xi-ker/kiado+lakas?page=2"/>
+    <link rel="stylesheet" type="text/css" media="screen, print" href="https://ingatlan.com/cssm/compiled_resultspage.css?v=820448c7a4cd054984708a2403a5589c"/>
+</head>
+<body class="site js-site lang-hu">
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="icon-edit-underlined" viewBox="0 0 14 14">
+        <path d="m10.354,4.667l-2.187,-2.188l-5.834,5.834l0,2.187l2.188,0l5.833,-5.833zm1.727,-1.727a0.58,0.58 0 0 0 0,-0.822l-1.365,-1.365a0.58,0.58 0 0 0 -0.823,0l-1.143,1.142l2.188,2.187l1.142,-1.142l0.001,0z"/>
+        <path d="m0,12.25l14,0l0,2.333l-14,0l0,-2.333z"/>
+    </symbol>
+    <symbol id="icon-saved-searches-history" viewBox="0 0 24 24">
+        <rect rx="1.5" height="3.048716" width="15.243581" y="4.365295" x="2.108461"/>
+        <rect rx="1.5" height="3.048716" width="7.621791" y="10.462727" x="2.108461"/>
+        <rect rx="1.5" height="3.048716" width="7.621791" y="16.56016" x="2.108461"/>
+        <polygon
+                points="16.58986294456031,17.51408683035163 19.88705020466955,19.60887608537007 19.01206973823878,15.660788778310803 21.92511749267578,13.00439475030646 18.089068094169534,12.661814688191384 16.58986294456031,8.938369290326477 15.090657794951085,12.661814688191384 11.254609547038513,13.00439475030646 14.16765845206919,15.660788778310803 13.292676835044745,19.60887608537007"/>
+    </symbol>
+    <symbol id="icon-notification" viewBox="0 0 16 20">
+        <path d="M8 19.5c1.1 0 2-.9 2-2H6a2 2 0 0 0 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V1.5C9.5.67 8.83 0 8 0S6.5.67 6.5 1.5v.68C3.63 2.86 2 5.42 2 8.5v5l-2 2v1h16v-1l-2-2z"/>
+    </symbol> <!-- material icons -->
+    <symbol id="material-clear" viewBox="0 0 24 24">
+        <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
+    </symbol>
+    <symbol id="material-warning" viewBox="0 0 24 24">
+        <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
+    </symbol>
+    <symbol id="material-close" viewBox="0 0 24 24">
+        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+    </symbol>
+    <symbol id="material-success" viewBox="0 0 24 24">
+        <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+    </symbol>
+    <symbol id="material-info" viewBox="0 0 24 24">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+    </symbol>
+    <symbol id="material-info-circle" viewBox="0 0 24 24">
+        <g xmlns="http://www.w3.org/2000/svg">
+            <rect x="11" y="7" width="2" height="2"/>
+            <rect x="11" y="11" width="2" height="6"/>
+            <path d="M12,2C6.48,2,2,6.48,2,12c0,5.52,4.48,10,10,10s10-4.48,10-10C22,6.48,17.52,2,12,2z M12,20c-4.41,0-8-3.59-8-8 c0-4.41,3.59-8,8-8s8,3.59,8,8C20,16.41,16.41,20,12,20z"/>
+        </g>
+    </symbol>
+    <symbol id="material-check-circle" viewBox="0 0 24 24">
+        <path d="M0 0h24v24H0z" fill="none"/>
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+    </symbol>
+    <symbol id="material-share" viewBox="0 0 24 24">
+        <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
+    </symbol>
+    <symbol id="material-camera" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="3.2"/>
+        <path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/>
+    </symbol>
+    <symbol id="material-photo-camera" viewBox="0 0 24 24">
+        <path d="M14.12,4l1.83,2H20v12H4V6h4.05l1.83-2H14.12 M15,2H9L7.17,4H4C2.9,4,2,4.9,2,6v12c0,1.1,0.9,2,2,2h16 c1.1,0,2-0.9,2-2V6c0-1.1-0.9-2-2-2h-3.17L15,2L15,2z"/>
+        <path d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5 s5-2.24,5-5S14.76,7,12,7L12,7z"/>
+    </symbol>
+    <symbol id="material-place" viewBox="0 0 24 24">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+    </symbol>
+    <symbol id="material-arrow-back" viewBox="0 0 24 24">
+        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+    </symbol>
+    <symbol id="material-star-empty" viewBox="0 0 24 24">
+        <path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"/>
+    </symbol>
+    <symbol id="material-star-full" viewBox="0 0 24 24">
+        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+    </symbol>
+    <symbol id="material-send" viewBox="0 0 24 24">
+        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+    </symbol>
+    <symbol id="material-more-vert" viewBox="0 0 24 24">
+        <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+    </symbol>
+    <symbol id="material-error-outline" viewBox="0 0 24 24">
+        <path d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
+    </symbol>
+    <symbol id="material-error" viewBox="0 0 24 24">
+        <path d="M0 0h24v24H0z" fill="none"/>
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+    </symbol>
+    <symbol id="material-lock" viewBox="0 0 24 24">
+        <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+    </symbol>
+    <symbol id="material-phone" viewBox="0 0 24 24">
+        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+    </symbol>
+    <symbol id="material-email" viewBox="0 0 24 24">
+        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+    </symbol>
+    <symbol id="material-done" viewBox="0 0 24 24">
+        <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+    </symbol>
+    <symbol id="material-delete" viewBox="0 0 24 24">
+        <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+    </symbol>
+    <symbol id="material-work" viewBox="0 0 24 24">
+        <path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/>
+    </symbol>
+    <symbol id="material-link" viewBox="0 0 24 24">
+        <path xmlns="http://www.w3.org/2000/svg"
+              d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/>
+    </symbol>
+    <symbol id="material-chevron-down" viewBox="0 0 24 24">
+        <path d="M7.41,8.59L12,13.17l4.59-4.58L18,10l-6,6l-6-6L7.41,8.59z"/>
+    </symbol>
+    <symbol id="material-chevron-left" viewBox="0 0 24 24">
+        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+    </symbol>
+    <symbol id="material-chevron-right" viewBox="0 0 24 24">
+        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+    </symbol>
+    <symbol id="material-search" viewBox="0 0 24 24">
+        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    </symbol>
+    <symbol id="material-refresh" viewBox="0 0 24 24">
+        <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+    </symbol>
+    <symbol id="material-flag" viewBox="0 0 24 24">
+        <path d="M14 6l-1-2H5v17h2v-7h5l1 2h7V6h-6zm4 8h-4l-1-2H7V6h5l1 2h5v6z"/>
+    </symbol>
+    <symbol id="material-search" viewBox="0 0 24 24">
+        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    </symbol>
+    <symbol id="material-history" viewBox="0 0 24 24">
+        <path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/>
+    </symbol>
+    <symbol id="material-print" viewBox="0 0 24 24">
+        <path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/>
+    </symbol>
+    <symbol id="material-edit" viewBox="0 0 24 24">
+        <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+    </symbol>
+    <symbol id="material-eye" viewBox="0 0 24 24">
+        <path d="M12,6.5c3.79,0,7.17,2.13,8.82,5.5c-1.65,3.37-5.02,5.5-8.82,5.5S4.83,15.37,3.18,12C4.83,8.63,8.21,6.5,12,6.5 M12,4.5 C7,4.5,2.73,7.61,1,12c1.73,4.39,6,7.5,11,7.5s9.27-3.11,11-7.5C21.27,7.61,17,4.5,12,4.5L12,4.5z"/>
+        <path d="M12,9.5c1.38,0,2.5,1.12,2.5,2.5s-1.12,2.5-2.5,2.5S9.5,13.38,9.5,12S10.62,9.5,12,9.5 M12,7.5c-2.48,0-4.5,2.02-4.5,4.5 s2.02,4.5,4.5,4.5s4.5-2.02,4.5-4.5S14.48,7.5,12,7.5L12,7.5z"/>
+    </symbol>
+    <symbol id="material-help" viewBox="0 0 24 24">
+        <path fill="none" d="M0 0h24v24H0z"/>
+        <path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/>
+    </symbol>
+    <symbol id="material-forum" viewBox="0 0 24 24">
+        <path fill="none" d="M0 0h24v24H0V0z"/>
+        <path d="M20 6h-1v8c0 .55-.45 1-1 1H6v1c0 1.1.9 2 2 2h10l4 4V8c0-1.1-.9-2-2-2zm-3 5V4c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v13l4-4h9c1.1 0 2-.9 2-2z"/>
+    </symbol>
+    <symbol id="save-search" viewBox="0 0 13 10">
+        <g fill="none" transform="translate(-3 -4)">
+            <path fill="#D35630" d="M12.5 12.626L14.663 14l-.574-2.59L16 9.667l-2.517-.224L12.5 7l-.983 2.443L9 9.667l1.911 1.743-.574 2.59z"/>
+            <rect width="10" height="2" x="3" y="4" fill="#D35630" rx="1"/>
+            <rect width="5" height="2" x="3" y="8" fill="#D35630" rx="1"/>
+            <rect width="5" height="2" x="3" y="12" fill="#D35630" rx="1"/>
+        </g>
+    </symbol>
+    <symbol id="save-search-onyx" viewBox="0 0 13 10">
+        <g fill="none" transform="translate(-3 -4)">
+            <path fill="#404041" d="M12.5 12.626L14.663 14l-.574-2.59L16 9.667l-2.517-.224L12.5 7l-.983 2.443L9 9.667l1.911 1.743-.574 2.59z"/>
+            <rect width="10" height="2" x="3" y="4" fill="#404041" rx="1"/>
+            <rect width="5" height="2" x="3" y="8" fill="#404041" rx="1"/>
+            <rect width="5" height="2" x="3" y="12" fill="#404041" rx="1"/>
+        </g>
+    </symbol>
+    <symbol id="info" viewBox="0 0 24 24">
+        <path d="M 12 0 C 5.398438 0 0 5.398438 0 12 C 0 18.601562 5.398438 24 12 24 C 18.601562 24 24 18.601562 24 12 C 24 5.398438 18.601562 0 12 0 Z M 12 22.425781 C 6.226562 22.425781 1.574219 17.773438 1.574219 12 C 1.574219 6.226562 6.226562 1.574219 12 1.574219 C 17.773438 1.574219 22.425781 6.226562 22.425781 12 C 22.425781 17.773438 17.773438 22.425781 12 22.425781 Z M 12 22.425781 "/>
+        <path d="M 12 7.199219 C 11.324219 7.199219 10.800781 7.425781 10.425781 7.800781 C 10.050781 8.175781 9.898438 8.773438 9.898438 9.601562 L 7.199219 9.601562 C 7.273438 8.175781 7.726562 6.976562 8.550781 6.226562 C 9.375 5.398438 10.574219 5.023438 12 5.023438 C 13.5 5.023438 14.625 5.398438 15.523438 6.148438 C 16.425781 6.898438 16.800781 7.875 16.800781 9.148438 C 16.800781 9.824219 16.574219 10.425781 16.199219 11.023438 C 15.824219 11.625 15.148438 12.226562 14.175781 12.976562 C 13.800781 13.273438 13.574219 13.574219 13.425781 13.875 C 13.273438 14.175781 13.199219 14.625 13.273438 15.148438 L 10.726562 15.148438 C 10.726562 14.25 10.875 13.5 11.175781 12.898438 C 11.476562 12.300781 12.074219 11.699219 12.824219 11.175781 C 13.199219 10.875 13.5 10.648438 13.648438 10.351562 C 13.800781 10.050781 13.875 9.675781 13.875 9.226562 C 13.875 8.699219 13.726562 8.25 13.351562 7.875 C 13.050781 7.351562 12.601562 7.199219 12 7.199219 Z M 10.574219 16.351562 L 13.425781 16.351562 L 13.425781 19.050781 L 10.574219 19.050781 Z M 10.574219 16.351562 "/>
+    </symbol>
+    <symbol id="caret-down" viewBox="0 0 24 24">
+        <path d="M 11.996094 13.542969 L 3.570312 5.117188 C 3.023438 4.570312 2.136719 4.570312 1.59375 5.117188 L 0.402344 6.308594 C -0.140625 6.851562 -0.140625 7.742188 0.402344 8.289062 L 11 18.886719 C 11.550781 19.433594 12.4375 19.433594 12.980469 18.886719 L 23.585938 8.289062 C 24.136719 7.738281 24.136719 6.851562 23.585938 6.308594 L 22.398438 5.117188 C 21.847656 4.570312 20.960938 4.570312 20.417969 5.117188 Z M 11.996094 13.542969 "/>
+    </symbol>
+    <symbol id="caret-left" viewBox="0 0 24 24">
+        <path d="M 10.460938 12 L 18.882812 3.578125 C 19.429688 3.03125 19.429688 2.144531 18.882812 1.597656 L 17.695312 0.410156 C 17.148438 -0.136719 16.261719 -0.136719 15.714844 0.410156 L 5.117188 11.011719 C 4.570312 11.558594 4.570312 12.441406 5.117188 12.988281 L 15.714844 23.589844 C 16.261719 24.136719 17.148438 24.136719 17.695312 23.589844 L 18.882812 22.402344 C 19.429688 21.855469 19.429688 20.96875 18.882812 20.421875 Z M 10.460938 12 "/>
+    </symbol>
+    <symbol id="caret-right" viewBox="0 0 24 24">
+        <path d="M 13.539062 12 L 5.117188 20.421875 C 4.570312 20.972656 4.570312 21.859375 5.117188 22.402344 L 6.304688 23.59375 C 6.851562 24.140625 7.738281 24.140625 8.28125 23.59375 L 18.882812 12.992188 C 19.429688 12.445312 19.429688 11.558594 18.882812 11.015625 L 8.28125 0.40625 C 7.734375 -0.140625 6.847656 -0.140625 6.304688 0.40625 L 5.113281 1.597656 C 4.566406 2.148438 4.566406 3.03125 5.113281 3.578125 Z M 13.539062 12 "/>
+    </symbol>
+    <symbol id="delete" viewBox="0 0 24 24">
+        <path d="M 15.929688 12.0625 L 23.382812 4.609375 C 24.074219 3.914062 24.074219 2.921875 23.382812 2.222656 L 21.695312 0.535156 C 21 -0.160156 20.007812 -0.160156 19.308594 0.535156 L 11.953125 8.085938 L 4.5 0.632812 C 3.804688 -0.0625 2.8125 -0.0625 2.113281 0.632812 L 0.523438 2.320312 C -0.167969 3.015625 -0.167969 4.007812 0.523438 4.707031 L 7.976562 12.0625 L 0.523438 19.515625 C -0.167969 20.207031 -0.167969 21.203125 0.523438 21.898438 L 2.210938 23.585938 C 2.511719 23.785156 2.90625 23.984375 3.402344 23.984375 C 3.898438 23.984375 4.296875 23.789062 4.59375 23.488281 L 11.949219 16.035156 L 19.402344 23.488281 C 19.703125 23.789062 20.199219 23.984375 20.59375 23.984375 C 20.992188 23.984375 21.488281 23.789062 21.78125 23.488281 L 23.46875 21.800781 C 24.164062 21.109375 24.164062 20.113281 23.46875 19.414062 Z M 15.929688 12.0625 "/>
+    </symbol>
+    <symbol id="search" viewBox="0 0 24 24">
+        <path d="M 8.082031 0 C 3.625 0 0 3.625 0 8.082031 C 0 12.539062 3.625 16.164062 8.082031 16.164062 C 12.539062 16.164062 16.164062 12.539062 16.164062 8.082031 C 16.164062 3.625 12.535156 0 8.082031 0 Z M 8.082031 14.539062 C 4.519531 14.539062 1.617188 11.640625 1.617188 8.078125 C 1.617188 4.515625 4.515625 1.617188 8.082031 1.617188 C 11.648438 1.617188 14.546875 4.519531 14.546875 8.082031 C 14.546875 11.644531 11.644531 14.539062 8.082031 14.539062 Z M 8.082031 14.539062 "/>
+        <path d="M 14.78125 15.921875 L 15.921875 14.777344 L 24 22.855469 L 22.855469 24 Z M 14.78125 15.921875 "/>
+    </symbol>
+    <symbol id="envelope" viewBox="0 0 24 24">
+        <path d="M 21.601562 2.398438 L 2.398438 2.398438 C 1.078125 2.398438 0.015625 3.476562 0.015625 4.800781 L 0 19.199219 C 0 20.523438 1.078125 21.601562 2.398438 21.601562 L 21.601562 21.601562 C 22.921875 21.601562 24 20.523438 24 19.199219 L 24 4.800781 C 24 3.476562 22.921875 2.398438 21.601562 2.398438 Z M 21.601562 7.199219 L 12 13.199219 L 2.398438 7.199219 L 2.398438 4.800781 L 12 10.800781 L 21.601562 4.800781 Z M 21.601562 7.199219 "/>
+    </symbol>
+    <symbol id="times" viewBox="0 0 24 24">
+        <path d="M 22.632812 2.597656 L 21.390625 1.355469 L 12 10.757812 L 2.617188 1.375 L 1.375 2.617188 L 10.757812 12 L 1.367188 21.402344 L 2.609375 22.644531 L 12 13.242188 L 21.382812 22.625 L 22.625 21.382812 L 13.242188 12 Z M 22.632812 2.597656 "/>
+    </symbol>
+    <symbol id="check" viewBox="0 0 24 24">
+        <path d="M 23.601562 5.070312 L 22.445312 3.910156 C 21.910156 3.378906 21.046875 3.378906 20.515625 3.910156 L 9.546875 14.878906 L 3.484375 8.820312 C 2.953125 8.289062 2.089844 8.289062 1.554688 8.820312 L 0.398438 9.976562 C -0.132812 10.511719 -0.132812 11.375 0.398438 11.90625 L 7.425781 18.929688 L 8.582031 20.085938 C 9.113281 20.621094 9.976562 20.621094 10.511719 20.085938 L 23.601562 6.996094 C 24.132812 6.464844 24.132812 5.601562 23.601562 5.070312 Z M 23.601562 5.070312 "/>
+    </symbol>
+    <symbol id="alert" viewBox="0 0 24 24">
+        <path d="M 23.679688 19.167969 L 14.039062 2.476562 C 13.617188 1.734375 12.851562 1.292969 12 1.292969 C 11.148438 1.292969 10.382812 1.734375 9.960938 2.46875 L 0.320312 19.167969 C -0.109375 19.902344 -0.109375 20.785156 0.320312 21.523438 C 0.746094 22.261719 1.507812 22.703125 2.359375 22.703125 L 21.636719 22.703125 C 22.492188 22.703125 23.253906 22.261719 23.675781 21.523438 C 24.109375 20.789062 24.109375 19.90625 23.679688 19.167969 Z M 12 19.988281 C 11.15625 19.988281 10.46875 19.296875 10.46875 18.453125 C 10.46875 17.609375 11.15625 16.921875 12 16.921875 C 12.84375 16.921875 13.53125 17.609375 13.53125 18.453125 C 13.53125 19.296875 12.84375 19.988281 12 19.988281 Z M 13.546875 13.429688 C 13.546875 14.28125 12.851562 14.972656 12.003906 14.972656 C 11.15625 14.972656 10.460938 14.277344 10.460938 13.429688 L 10.460938 6.34375 C 10.460938 5.9375 10.789062 5.609375 11.195312 5.609375 L 12.820312 5.609375 C 13.222656 5.609375 13.550781 5.9375 13.550781 6.34375 Z M 13.546875 13.429688 "/>
+    </symbol>
+    <symbol id="star" viewBox="0 0 24 24">
+        <path d="M 23.941406 9.203125 C 23.796875 8.761719 23.414062 8.441406 22.957031 8.375 L 16.140625 7.382812 L 13.09375 1.207031 C 12.886719 0.792969 12.464844 0.527344 12 0.527344 C 11.539062 0.527344 11.113281 0.792969 10.910156 1.207031 L 7.863281 7.382812 L 1.042969 8.375 C 0.585938 8.441406 0.203125 8.761719 0.0625 9.203125 C -0.0820312 9.644531 0.0351562 10.125 0.367188 10.449219 L 5.300781 15.257812 L 4.136719 22.050781 C 4.058594 22.503906 4.246094 22.964844 4.621094 23.238281 C 4.996094 23.511719 5.492188 23.546875 5.902344 23.332031 L 12 20.125 L 18.097656 23.332031 C 18.507812 23.546875 19.003906 23.511719 19.378906 23.238281 C 19.753906 22.964844 19.941406 22.503906 19.863281 22.050781 L 18.699219 15.257812 L 23.632812 10.453125 C 23.964844 10.128906 24.085938 9.644531 23.941406 9.203125 Z M 23.941406 9.203125 "/>
+    </symbol>
+    <symbol id="star-empty" viewBox="0 0 24 24">
+        <path d="M 18.664062 23.46875 C 18.46875 23.46875 18.273438 23.421875 18.097656 23.328125 C 16.574219 22.527344 12 20.128906 12 20.128906 C 12 20.128906 7.425781 22.53125 5.902344 23.335938 C 5.304688 23.648438 4.570312 23.414062 4.257812 22.820312 C 4.132812 22.585938 4.085938 22.3125 4.132812 22.050781 C 4.425781 20.351562 5.296875 15.257812 5.296875 15.257812 C 5.296875 15.257812 1.597656 11.652344 0.367188 10.449219 C -0.117188 9.980469 -0.121094 9.207031 0.347656 8.722656 C 0.535156 8.53125 0.777344 8.410156 1.039062 8.371094 C 2.742188 8.125 7.855469 7.382812 7.855469 7.382812 L 10.902344 1.203125 C 11.203125 0.601562 11.933594 0.355469 12.535156 0.65625 C 12.773438 0.773438 12.964844 0.96875 13.082031 1.203125 L 16.128906 7.382812 C 16.128906 7.382812 21.242188 8.128906 22.945312 8.371094 C 23.609375 8.46875 24.074219 9.085938 23.976562 9.75 C 23.9375 10.015625 23.8125 10.261719 23.621094 10.449219 C 22.386719 11.648438 18.6875 15.253906 18.6875 15.253906 C 18.6875 15.253906 19.566406 20.34375 19.851562 22.046875 C 19.964844 22.710938 19.519531 23.339844 18.851562 23.453125 C 18.800781 23.464844 18.730469 23.46875 18.664062 23.46875 Z M 3.835938 10.429688 L 7.457031 13.964844 C 7.742188 14.246094 7.875 14.648438 7.808594 15.042969 L 6.953125 20.03125 L 11.433594 17.671875 C 11.789062 17.484375 12.210938 17.484375 12.566406 17.671875 L 17.046875 20.023438 L 16.191406 15.039062 C 16.125 14.644531 16.25 14.242188 16.542969 13.960938 L 20.164062 10.425781 L 15.15625 9.703125 C 14.757812 9.648438 14.414062 9.398438 14.234375 9.039062 L 12 4.496094 L 9.757812 9.03125 C 9.582031 9.394531 9.238281 9.640625 8.839844 9.699219 Z M 3.835938 10.429688 "/>
+    </symbol>
+    <symbol id="icom-info" viewBox="0 0 24 24">
+        <path d="M 10.800781 18 L 13.199219 18 L 13.199219 10.800781 L 10.800781 10.800781 Z M 12 0 C 5.375 0 0 5.375 0 12 C 0 18.625 5.375 24 12 24 C 18.625 24 24 18.625 24 12 C 24 5.375 18.625 0 12 0 Z M 12 21.601562 C 6.707031 21.601562 2.398438 17.292969 2.398438 12 C 2.398438 6.707031 6.707031 2.398438 12 2.398438 C 17.292969 2.398438 21.601562 6.707031 21.601562 12 C 21.601562 17.292969 17.292969 21.601562 12 21.601562 Z M 10.800781 8.398438 L 13.199219 8.398438 L 13.199219 6 L 10.800781 6 Z M 10.800781 8.398438 "/>
+    </symbol>
+    <symbol id="youtube" viewBox="0 0 24 24">
+        <rect fill="#FFFFFE" opacity="0.01" x="0" y="0" width="24" height="24"></rect>
+        <path d="M11.6500021,5.00035129 L12.352033,5.00035129 L13.8171425,5.01694279 C15.7909702,5.05024214 18.7993689,5.14577305 19.8154492,5.41983712 C20.67608,5.65133122 21.3537429,6.33342626 21.5837596,7.19962558 C21.8763491,8.29854637 21.9641259,10.2332563 21.9904589,11.2951794 L22.0013265,12.1383746 C21.9975647,12.683131 21.959946,15.4775682 21.5837596,16.8906709 C21.3537429,17.7567566 20.67608,18.4388516 19.8154492,18.6704594 C18.7668627,18.9532148 15.5964433,19.0458826 13.6309795,19.0762527 L11.9596512,19.0910127 L10.1193375,19.0721227 C8.14507397,19.0378303 5.19148136,18.9414334 4.18658593,18.6704594 C3.32606884,18.4388516 2.6482923,17.7567566 2.41827558,16.8906709 C2.04208914,15.4775682 2.0044705,12.683131 2.00070863,12.1383746 L2.00682166,11.5087527 C2.02641471,10.5139077 2.10478688,8.37704071 2.41827558,7.19962558 C2.6482923,6.33342626 3.32606884,5.65133122 4.18658593,5.41983712 C5.52353376,5.05922649 10.3097861,5.00771069 11.6500021,5.00035129 Z M9.95541435,9.07112526 L9.95541435,15.0190576 L15.1830671,12.0452051 L9.95541435,9.07112526 Z"
+              id="Shape"></path>
+    </symbol>
+    <symbol id="virtual" viewBox="0 0 24 24">
+        <path d="M0 0h24v24H0V0z" fill="none"/>
+        <path d="M12 7C6.48 7 2 9.24 2 12c0 2.24 2.94 4.13 7 4.77v2.02c0 .45.54.67.85.35l2.79-2.79c.2-.2.2-.51 0-.71l-2.79-2.79c-.31-.31-.85-.09-.85.36v1.52c-3.15-.56-5-1.9-5-2.73 0-1.06 3.04-3 8-3s8 1.94 8 3c0 .66-1.2 1.68-3.32 2.34-.41.13-.68.51-.68.94 0 .67.65 1.16 1.28.96C20.11 15.36 22 13.79 22 12c0-2.76-4.48-5-10-5z"/>
+    </symbol>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="display: none;">
+    <symbol id="facebook-icon" viewBox="0 0 266.893 266.895">
+        <path fill="#3C5A99"
+              d="M248.082,262.307c7.854,0,14.223-6.369,14.223-14.225V18.812 c0-7.857-6.368-14.224-14.223-14.224H18.812c-7.857,0-14.224,6.367-14.224,14.224v229.27c0,7.855,6.366,14.225,14.224,14.225 H248.082z"/>
+        <path fill="#FFFFFF"
+              d="M182.409,262.307v-99.803h33.499l5.016-38.895h-38.515V98.777c0-11.261,3.127-18.935,19.275-18.935 l20.596-0.009V45.045c-3.562-0.474-15.788-1.533-30.012-1.533c-29.695,0-50.025,18.126-50.025,51.413v28.684h-33.585v38.895h33.585 v99.803H182.409z"/>
+    </symbol>
+    <symbol id="facebook-gray-icon" viewBox="0 0 266.893 266.895">
+        <path fill="#999999"
+              d="M248.082,262.307c7.854,0,14.223-6.369,14.223-14.225V18.812 c0-7.857-6.368-14.224-14.223-14.224H18.812c-7.857,0-14.224,6.367-14.224,14.224v229.27c0,7.855,6.366,14.225,14.224,14.225 H248.082z"/>
+        <path fill="#FFFFFF"
+              d="M182.409,262.307v-99.803h33.499l5.016-38.895h-38.515V98.777c0-11.261,3.127-18.935,19.275-18.935 l20.596-0.009V45.045c-3.562-0.474-15.788-1.533-30.012-1.533c-29.695,0-50.025,18.126-50.025,51.413v28.684h-33.585v38.895h33.585 v99.803H182.409z"/>
+    </symbol>
+    <symbol id="messenger-icon" viewBox="0 0 224 226">
+        <path fill="#0084FF"
+              d="m41.255 185.52v40.2l37.589-21.37c10.478 3.02 21.616 4.65 33.156 4.65 61.86 0 112-46.79 112-104.5 0-57.714-50.14-104.5-112-104.5-61.856 0-112 46.786-112 104.5 0 32.68 16.078 61.86 41.255 81.02z"/>
+        <path fill="#fff" d="m100.04 75.878l-60.401 63.952 54.97-30.16 28.721 30.16 60.06-63.952-54.36 29.632-28.99-29.632z"/>
+    </symbol>
+    <symbol id="messenger-icon-mono" viewBox="0 0 24 24">
+        <path d="M12 0c-6.627 0-12 4.975-12 11.111 0 3.497 1.745 6.616 4.472 8.652v4.237l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.974 12-11.111 0-6.136-5.373-11.111-12-11.111zm1.193 14.963l-3.056-3.259-5.963 3.259 6.559-6.963 3.13 3.259 5.889-3.259-6.559 6.963z"/>
+    </symbol>
+    <symbol id="twitter-icon" viewBox="0 0 400 400">
+        <path d="M153.62,301.59c94.34,0,145.94-78.16,145.94-145.94,0-2.22,0-4.43-.15-6.63A104.36,104.36,0,0,0,325,122.47a102.38,102.38,0,0,1-29.46,8.07,51.47,51.47,0,0,0,22.55-28.37,102.79,102.79,0,0,1-32.57,12.45,51.34,51.34,0,0,0-87.41,46.78A145.62,145.62,0,0,1,92.4,107.81a51.33,51.33,0,0,0,15.88,68.47A50.91,50.91,0,0,1,85,169.86c0,.21,0,.43,0,.65a51.31,51.31,0,0,0,41.15,50.28,51.21,51.21,0,0,1-23.16.88,51.35,51.35,0,0,0,47.92,35.62,102.92,102.92,0,0,1-63.7,22A104.41,104.41,0,0,1,75,278.55a145.21,145.21,0,0,0,78.62,23"/>
+    </symbol>
+</svg>
+<header class="site__header header" data-testid="header-navbar">
+    <div class="header__inner">
+        <a href="https://ingatlan.com" class="header__logo"></a>
+    </div>
+</header>
+<div class="site__content">
+    <div class="resultspage js-resultspage">
+        <div id="results-filter-slidedown"></div>
+        <div class="dialog dialog--zone-chooser js-zone-selector-dialog">
+            <div class="dialog__box">
+                <svg class="dialog__close js-zone-selector-close">
+                    <use xlink:href="#delete"/>
+                </svg>
+                <div class="dialog__title js-zone-selector-title">Városrészek betöltése...</div>
+                <div class="dialog__content dialog--zone-chooser__dialog-content js-zone-selector-dialog-content"></div>
+                <div class="dialog--zone-chooser__dialog-loader">
+                    <svg class="loading-animation " width="30px" height="30px" viewBox="25 25 50 50" xmlns="http://www.w3.org/2000/svg">
+                        <circle class="loading-animation__circle" fill="none" stroke="#d35630" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" cx="50" cy="50"
+                                r="20"></circle>
+                    </svg>
+                    <div class="loading-animation--ie-fallback "></div>
+                </div>
+            </div>
+        </div>
+        <div class="resultspage__container" data-testid="results-page-container">
+            <div class="resultspage__content">
+                <header class="resultspage__header">
+                    <div class="resultspage__header-left ">
+                        <div class="resultspage__title">
+                            <div class="resultspage__listing-count">
+                                <div class="results__number" data-listings-count="{{results.length}}"><span class="results__number__count">{{results.length}}</span> találat</div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <main class="resultspage__main">
+                    <div class="resultspage__listings js-listings">
+                        {{#each results}}
+                        <div class="listing js-listing">
+                            <div class="listing__card">
+                                <a class="listing__thumbnail js-listing-active-area" title="Részletek" target="_blank"
+                                      href="{{{this.url}}}">
+                                <img class="listing__image" src="{{{this.imageUrl}}}" alt="Részletek"/>
+                                <div class="listing__photos-count">
+                                    <svg class="listing__photos-icon">
+                                        <use xlink:href="#material-photo-camera"/>
+                                    </svg>
+                                </div>
+                                </a>
+                                <a href="{{{this.url}}}" class="listing__link js-listing-active-area" target="_blank">
+                                    <header class="listing__header">
+                                        <div class="listing__featured-parameters">
+                                            <div class="listing__price">
+                                                <div class="price__container ">
+                                                    <div class="price">{{this.price}}</div>
+                                                </div>
+                                            </div>
+                                            <div class="listing__address">{{this.address}}</div>
+                                        </div>
+                                    </header>
+                                    <div class="listing__parameters">
+                                        <div class="listing__parameter listing__data--area-size">{{this.area}}</div>
+                                        <div class="listing__parameter listing__data--room-count">{{this.rooms}}</div>
+                                        <div class="listing__parameter listing__data--balcony-size">{{this.balconyArea}}</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+    "searchParams": {
+        "startPrice": 120,
+        "endPrice": 175,
+        "minArea": 40,
+        "districts": [
+            "XI",
+            "XII"
+        ],
+        "excludeWithoutImage": true
+    },
+    "scrapedUrls": []
+}

@@ -156,6 +156,7 @@ function saveResultsToHtml(results) {
 
 async function main() {
   configManager.load()
+  console.log('Started at', moment().format('YYYY-MM-DD HH:mm:ss'))
 
   const results = await scrapeNewApartments()
   markResultsAsAlreadyScraped(results)

@@ -1,0 +1,2 @@
+- Create a config file under `data/config.json`
+- Run the scraper with `yarn start`

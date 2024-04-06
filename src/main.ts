@@ -1,4 +1,4 @@
-import * as open from 'open'
+import open from 'open'
 import Scraper from 'scraper'
 import State from 'state'
 import Template from 'template'

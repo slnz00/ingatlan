@@ -1,7 +1,7 @@
 import ApartmentData from 'interfaces/apartment-data.interface'
 import * as path from 'path'
 import FSUtils from 'utils/fs.utils'
-import * as moment from 'moment'
+import * as dayjs from 'dayjs'
 import * as Handlebars from 'handlebars'
 
 const TEMPLATE_PATHS = {
@@ -18,7 +18,7 @@ export default class Template {
   }
 
   async saveResultsAsHtml (results: ApartmentData[]): Promise<string> {
-    const fileName = moment().format('YYYY-MM-DD_HH-mm-ss')
+    const fileName = dayjs().format('YYYY-MM-DD_HH-mm-ss')
     const htmlPath = path.normalize(__dirname + `/../${RESULTS_PATH_BASE}/${fileName}.html`)
     const templateSource = await FSUtils.readFile(TEMPLATE_PATHS.newApartments, true)
     const template = Handlebars.compile(templateSource)

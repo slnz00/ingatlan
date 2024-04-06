@@ -15,6 +15,10 @@ class Plain extends CityBase {
   }
 }
 
+interface BudapestOptions {
+  districts: number[]
+}
+
 class Budapest extends CityBase {
   private districts: string[]
   private romanNumeralCodes = [
@@ -23,7 +27,7 @@ class Budapest extends CityBase {
     ["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM"]
   ]
 
-  constructor(options: { districts: number[] }) {
+  constructor(options: BudapestOptions) {
     super()
     this.districts = Array
       .from(new Set(options.districts))

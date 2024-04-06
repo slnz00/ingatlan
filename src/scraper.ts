@@ -94,6 +94,13 @@ export default class Scraper {
     const cities = config.city instanceof Array ? config.city : [config.city]
     cities.forEach(addParam)
 
+    if (!config.furnished) {
+      config.furnished = [];
+    }
+
+    const furnished = config.furnished instanceof Array ? config.furnished : [config.furnished]
+    furnished.forEach(addParam)
+
     addParam(config.price)
     addParam(config.area)
 

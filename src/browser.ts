@@ -1,4 +1,4 @@
-import ESM from 'esm';
+import esm from 'esm';
 import { Browser as PuppeteerBrowser, Page as PuppeteerPage } from 'puppeteer';
 
 export type Page = PuppeteerPage;
@@ -47,7 +47,7 @@ export default class Browser {
       return
     }
 
-    const { connect } = ESM.modules['puppeteer-real-browser'];
+    const { connect } = esm.modules['puppeteer-real-browser'];
 
     const { browser, page } = await connect({});
 

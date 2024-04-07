@@ -4,15 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "cheerio": "^1.0.0-rc.12",
     "dayjs": "^1.11.10",
     "handlebars": "^4.7.8",
-    "jsdom": "^24.0.0",
-    "node-fetch": "^3.3.2",
     "open": "^10.1.0",
-    "puppeteer": "^22.6.3",
-    "puppeteer-extra": "^3.3.6",
-    "puppeteer-extra-plugin-stealth": "^2.11.2",
     "puppeteer-real-browser": "^1.2.11",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.4"
@@ -23,7 +17,6 @@
     "debug": "NODE_PATH=src TS_NODE_FILES=true TS_NODE_TRANSPILE_ONLY=true NODE_OPTIONS=\"--inspect-brk\" ts-node src/main.ts"
   },
   "devDependencies": {
-    "@types/jsdom": "^21.1.6",
     "@types/node": "^20.12.5"
   }
 }

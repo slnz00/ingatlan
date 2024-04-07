@@ -1,13 +1,13 @@
 import Browser from 'browser';
-import ESM from 'esm';
+import esm from 'esm';
 import Scraper from 'scraper'
 import State from 'state'
 import Template from 'template'
 
 async function main() {
-  await ESM.load();
+  await esm.load();
 
-  const { default: open } = ESM.modules.open;
+  const { default: open } = esm.modules.open;
 
   const state = State.instance
   const scraper = Scraper.instance

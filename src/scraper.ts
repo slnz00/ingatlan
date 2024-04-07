@@ -54,13 +54,13 @@ export default class Scraper {
     const page = await this.openPage(url)
 
     return page.evaluate(() => {
-      const listings = [...document.querySelectorAll('.listing-card')]
+      const listings = Array.from(document.querySelectorAll('.listing-card'))
 
       return Promise.resolve(
         listings.map(listing => {
           const content = listing.querySelector('.listing-card-content .row')!
           const mainInfo = content.querySelectorAll('.w-100')![0]
-          const details = [...content.querySelectorAll('.w-100')![1].querySelectorAll('div.d-flex.flex-column')]
+          const details = Array.from(content.querySelectorAll('.w-100')![1].querySelectorAll('div.d-flex.flex-column'))
 
           const getDetail = (name: string) => {
             const container = details.find(c => {

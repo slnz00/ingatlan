@@ -1,17 +1,14 @@
-async function getModules () {
-  return {
-    'node-fetch': await import('node-fetch'),
-    open: await import('open'),
-    'puppeteer-real-browser': await import('puppeteer-real-browser')
+type ESModulesGetter<TModules extends object> = () => Promise<TModules>
+
+class ESM <TModules extends object> {
+  private _modules: TModules
+  private readonly getModules: ESModulesGetter<TModules>
+
+  constructor (getModules: ESModulesGetter<TModules>) {
+    this.getModules = getModules
   }
-}
 
-type ESModules = Awaited<ReturnType<typeof getModules>>
-
-class ESM {
-  private static _modules: ESModules
-
-  static get modules () {
+  get modules () {
     if (!this._modules) {
       throw new Error('Load ES modules first using the load method')
     }
@@ -19,11 +16,14 @@ class ESM {
     return this._modules
   }
 
-  static async load () {
+  async load () {
     if (!this._modules) {
-      this._modules = await getModules()
+      this._modules = await this.getModules()
     }
   }
 }
 
-export default ESM;
+export default new ESM(async () => ({
+  open: await import('open'),
+  'puppeteer-real-browser': await import('puppeteer-real-browser')
+}));

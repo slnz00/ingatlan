@@ -30,7 +30,7 @@ export default class State {
 
   private async loadConfig () {
     // @ts-ignore
-    this.config = (await import('../data/config')).default
+    this.config = require('../data/config').default
   }
 
   private async loadScrapedUrls () {

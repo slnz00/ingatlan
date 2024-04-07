@@ -1,7 +1,7 @@
 import ApartmentData from 'interfaces/apartment-data.interface'
 import * as path from 'path'
 import FSUtils from 'utils/fs.utils'
-import * as dayjs from 'dayjs'
+import dayjs from 'dayjs'
 import * as Handlebars from 'handlebars'
 
 const TEMPLATE_PATHS = {

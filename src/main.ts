@@ -1,9 +1,14 @@
-import open from 'open'
+import Browser from 'browser';
+import ESM from 'esm';
 import Scraper from 'scraper'
 import State from 'state'
 import Template from 'template'
 
 async function main() {
+  await ESM.load();
+
+  const { default: open } = ESM.modules.open;
+
   const state = State.instance
   const scraper = Scraper.instance
   const template = Template.instance
@@ -23,4 +28,8 @@ async function main() {
   await state.save()
 }
 
-main().catch(console.error)
+main()
+  .catch(console.error)
+  .finally(() => {
+    Browser.instance.close()
+  })

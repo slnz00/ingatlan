@@ -1,6 +1,6 @@
+import Browser from 'browser';
 import ApartmentData from 'interfaces/apartment-data.interface'
 import BaseModel from 'models/base.model'
-import fetch from 'node-fetch'
 import State from 'state'
 import { JSDOM } from 'jsdom'
 
@@ -28,8 +28,6 @@ export default class Scraper {
       results = results.concat(currentResults)
       state.addScrapedUrls(currentResults.map(r => r.url))
 
-      console.log('Scraped:', { page, results: currentResults.length })
-
       hasMorePage = !!currentResults.length
       page++
     } while (hasMorePage)
@@ -41,30 +39,63 @@ export default class Scraper {
     const state = State.instance
     const { config } = state
 
-    const body = await fetch(url).then((res: any) => res.text())
+    const body = await this.fetchWithBrowser(url)
 
     const dom = new JSDOM(body)
+
     const { document } = dom.window
 
-    const listings = [...document.querySelectorAll('.listing__card') as any]
+    const listings = [...document.querySelectorAll('.listing-card')] as Element[]
 
     return listings
-      .map(listing => ({
-        url: 'https://ingatlan.com' + listing.querySelector('.listing__link.js-listing-active-area').href,
-        imageUrl: (listing.querySelector('.listing__image') || { src: '' }).src,
-        price: listing.querySelector('.price').innerHTML.trim(),
-        address: listing.querySelector('.listing__address').innerHTML.trim(),
-        area: listing.querySelector('.listing__parameter.listing__data--area-size').innerHTML.trim(),
-        balconyArea: (listing.querySelector('.listing__parameter.listing__data--balcony-size') || { innerHTML: '' }).innerHTML.trim(),
-        rooms: listing.querySelector('.listing__parameter.listing__data--room-count').innerHTML.trim()
-      }))
+      .map(listing => {
+        const content = listing.querySelector('.listing-card-content .row')!
+        const mainInfo = content.querySelectorAll('.w-100')![0]
+        const details = [...content.querySelectorAll('.w-100')![1].querySelectorAll('div.d-flex.flex-column')]
+
+        const getDetail = (name: string) => {
+          const container = details.find(c => {
+            const currentName = c.querySelector('span.text-nickel')!.textContent || ''
+            return currentName.trim() === name
+          })
+
+          if (!container) {
+            return ''
+          }
+
+          return container.querySelector('span.text-onyx')!.textContent || ''
+        }
+
+        return {
+          url: `https://ingatlan.com${(listing as any).href}`,
+          imageUrl: (listing.querySelector('.listing-card-image') as any || { src: '' }).src,
+          price: mainInfo.querySelector('div.d-flex span.fw-bold.text-onyx')!.textContent || '',
+          address: mainInfo.querySelector('span.d-block.text-onyx')!.textContent || '',
+          area: getDetail('Alapterület'),
+          balconyArea: getDetail('Erkély'),
+          rooms: getDetail('Szobák')
+        }
+      })
       .filter(result => {
         if (config.excludeWithoutImage) {
-          return !!result.imageUrl
+          return !result.imageUrl.includes('listing-image-placeholder.svg')
         }
         return true
       })
       .filter(result => !state.scrapedUrls.includes(result.url))
+  }
+
+  private async fetchWithBrowser(url: string): Promise<string> {
+    const browser = Browser.instance
+    const page = await browser.getPage()
+
+    await page.goto(url)
+
+    await page
+      .waitForSelector('.primary-header', { timeout: 10000 })
+      .catch(() => { throw new Error('Failed to bypass cloudflare protection') })
+
+    return page.content()
   }
 
   private getUrl(page?: number) {
@@ -105,5 +136,9 @@ export default class Scraper {
     addParam(config.area)
 
     return params.join('+')
+  }
+
+  private async createPuppeteer () {
+
   }
 }

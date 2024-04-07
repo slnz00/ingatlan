@@ -76,7 +76,7 @@ export default class Scraper {
           }
 
           return {
-            url: `https://ingatlan.com${(listing as any).href}`,
+            url: (listing as any).href,
             imageUrl: (listing.querySelector('.listing-card-image') as any || { src: '' }).src,
             price: mainInfo.querySelector('div.d-flex span.fw-bold.text-onyx')!.textContent || '',
             address: mainInfo.querySelector('span.d-block.text-onyx')!.textContent || '',

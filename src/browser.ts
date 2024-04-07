@@ -1,6 +1,8 @@
 import ESM from 'esm';
 import { Browser as PuppeteerBrowser, Page as PuppeteerPage } from 'puppeteer';
 
+export type Page = PuppeteerPage;
+
 export default class Browser {
   private initialized: boolean = false
   private browser: PuppeteerBrowser | null = null

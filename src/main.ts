@@ -15,10 +15,14 @@ async function main() {
 
   await state.initialize()
 
+  const startedAt = new Date();
   const newApartments = await scraper.scrapeNewApartments()
+  const timeElapsed = new Date().getTime() - startedAt.getTime()
+
   if (newApartments.length) {
     const htmlPath = await template.saveResultsAsHtml(newApartments)
-    console.log(`Scraped ${newApartments.length} new apartments, opening browser...`)
+
+    console.log(`Scraped ${newApartments.length} new apartments (took: ${timeElapsed} ms), opening browser...`)
 
     await open(htmlPath).catch(err => console.error('Failed to open browser:', err))
   } else {

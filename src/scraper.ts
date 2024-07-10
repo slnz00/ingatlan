@@ -130,7 +130,10 @@ export default class Scraper {
     cities.forEach(addParam)
 
     if (!config.furnished) {
-      config.furnished = [];
+      config.furnished = []
+    }
+    if (config.airConditioner) {
+      addParam('van-legkondi')
     }
 
     const furnished = config.furnished instanceof Array ? config.furnished : [config.furnished]

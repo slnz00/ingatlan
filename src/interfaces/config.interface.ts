@@ -9,6 +9,7 @@ export default interface Config {
   city: CityBase | CityBase[]
   houseType: HouseTypeBase<any>
   offerType: OfferType
+  airConditioner?: boolean
   furnished?: Furnished | Furnished[]
   price?: Price
   area?: Area

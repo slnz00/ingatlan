@@ -5,7 +5,7 @@ import dayjs from 'dayjs'
 import * as Handlebars from 'handlebars'
 
 const TEMPLATE_PATHS = {
-  newApartments: 'templates/new-apartments.html'
+  apartments: 'templates/apartments.html'
 }
 
 const RESULTS_PATH_BASE = 'data/results'
@@ -20,7 +20,7 @@ export default class Template {
   async saveResultsAsHtml (results: ApartmentData[]): Promise<string> {
     const fileName = dayjs().format('YYYY-MM-DD_HH-mm-ss')
     const htmlPath = path.normalize(__dirname + `/../${RESULTS_PATH_BASE}/${fileName}.html`)
-    const templateSource = await FSUtils.readFile(TEMPLATE_PATHS.newApartments, true)
+    const templateSource = await FSUtils.readFile(TEMPLATE_PATHS.apartments, true)
     const template = Handlebars.compile(templateSource)
     const generatedHtml = template({ results })
 

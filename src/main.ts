@@ -15,25 +15,31 @@ async function main() {
 
   await state.initialize()
 
-  const startedAt = new Date();
-  const newApartments = await scraper.scrapeNewApartments()
-  const timeElapsed = new Date().getTime() - startedAt.getTime()
+  for (const [name, config] of Object.entries(state.configs)) {
+    if (config.enabled === false) {
+      console.log(`[${name}] Config is disabled, skipping...`)
 
-  if (newApartments.length) {
-    const htmlPath = await template.saveResultsAsHtml(newApartments)
+      continue
+    }
 
-    console.log(`Scraped ${newApartments.length} new apartments (took: ${timeElapsed} ms), opening browser...`)
+    const startedAt = new Date();
+    const newApartments = await scraper.scrapeNewApartments(name, config)
+    const timeElapsed = new Date().getTime() - startedAt.getTime()
 
-    await open(htmlPath).catch(err => console.error('Failed to open browser:', err))
-  } else {
-    console.log('Could not find any new apartments')
+    if (newApartments.length) {
+      const htmlPath = await template.saveResultsAsHtml(name, newApartments)
+
+      console.log(`[${name}] Scraped ${newApartments.length} new apartments (took: ${timeElapsed} ms), opening browser...`)
+
+      await open(htmlPath).catch(err => console.error(`[${name}] Failed to open browser:`, err))
+    } else {
+      console.log(`[${name}] Could not find new apartments`)
+    }
   }
-
-  await state.save()
 }
 
 main()
   .catch(console.error)
-  .finally(() => {
-    Browser.instance.close()
+  .finally(async () => {
+    await Browser.instance.close()
   })

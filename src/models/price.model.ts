@@ -1,21 +1,20 @@
+import Config from 'interfaces/config.interface'
 import BaseModel from 'models/base.model'
 import OfferType from 'models/offer-type.model'
-import State from 'state'
 
 export default class Price extends BaseModel {
+  offerType: OfferType
   min: number | null
   max: number | null
 
-  constructor(options: { min?: number, max?: number } = {}) {
+  constructor(options: {min?: number, max?: number }) {
     super()
 
     this.min = options.min ?? null
     this.max = options.max ?? null
   }
 
-  getParam (): string {
-    const { config } = State.instance
-
+  getParam (config: Config): string {
     if (config.offerType === OfferType.ELADO) {
       return this.getSaleParam()
     }

@@ -6,6 +6,7 @@ import OfferType from 'models/offer-type.model'
 import Price from 'models/price.model'
 
 export default interface Config {
+  enabled?: boolean;
   city: CityBase | CityBase[]
   houseType: HouseTypeBase<any>
   offerType: OfferType

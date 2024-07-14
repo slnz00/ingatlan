@@ -24,4 +24,22 @@ export default class FSUtils {
       throw error
     }
   }
+
+  static async pathExists(_path: string) {
+    try {
+      await fs.access(_path, fs.constants.F_OK)
+
+      return true
+    } catch {
+      return false
+    }
+  }
+
+  static async ensureDirectoryExists(dirPath: string) {
+    const dirExists = await this.pathExists(dirPath)
+
+    if (!dirExists) {
+      await fs.mkdir(dirPath, { recursive: true })
+    }
+  }
 }

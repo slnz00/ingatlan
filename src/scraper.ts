@@ -1,5 +1,6 @@
 import Browser, { Page } from 'browser';
 import ApartmentData from 'interfaces/apartment-data.interface'
+import Config from 'interfaces/config.interface';
 import BaseModel from 'models/base.model'
 import State from 'state'
 
@@ -12,19 +13,19 @@ export default class Scraper {
 
   private constructor() {}
 
-  async scrapeNewApartments () {
+  async scrapeNewApartments (name: string, config: Config) {
     const state = State.instance
-    const { config } = state
+    const scrapedUrls = await state.getScrapedUrls(name);
 
     let hasMorePage = true
     let results: ApartmentData[] = []
     let page = 1
 
-    console.log('Scraping:', this.getUrl())
+    console.log(`[${name}] Scraping:`, this.getUrl(config))
 
     do {
       const startedAt = new Date();
-      const url = this.getUrl(page)
+      const url = this.getUrl(config, page)
       const currentResults = await this.scrape(url)
 
       const filteredCurrentResults = currentResults
@@ -34,18 +35,20 @@ export default class Scraper {
           }
           return true
         })
-        .filter(result => !state.scrapedUrls.includes(result.url))
+        .filter(result => !scrapedUrls.includes(result.url))
 
       results = results.concat(filteredCurrentResults)
-      state.addScrapedUrls(filteredCurrentResults.map(r => r.url))
+      filteredCurrentResults.forEach(r => scrapedUrls.push(r.url))
 
       const took = new Date().getTime() - startedAt.getTime()
 
-      console.log('Scraped:', { page, results: filteredCurrentResults.length, took })
+      console.log(`[${name}] Scraped:`, { page, results: filteredCurrentResults.length, took })
 
       hasMorePage = !!currentResults.length
       page++
     } while (hasMorePage)
+
+    await state.saveScrapedUrls(name, scrapedUrls)
 
     return results
   }
@@ -102,8 +105,8 @@ export default class Scraper {
     return page
   }
 
-  private getUrl(page?: number) {
-    const baseUrl = `https://ingatlan.com/lista/${this.getUrlParams()}+ar-szerint`
+  private getUrl(config: Config, page?: number) {
+    const baseUrl = `https://ingatlan.com/lista/${this.getUrlParams(config)}+ar-szerint`
 
     if (!page) {
       return baseUrl
@@ -111,12 +114,11 @@ export default class Scraper {
     return `${baseUrl}?page=${page}`
   }
 
-  private getUrlParams (): string {
-    const { config } = State.instance
+  private getUrlParams (config: Config): string {
     const params: string[] = []
 
     const addParam = (modelOrParam?: BaseModel | string) => {
-      const param = modelOrParam instanceof BaseModel ? modelOrParam.getParam() : modelOrParam
+      const param = modelOrParam instanceof BaseModel ? modelOrParam.getParam(config) : modelOrParam
 
       if (param) {
         params.push(param)
@@ -143,9 +145,5 @@ export default class Scraper {
     addParam(config.area)
 
     return params.join('+')
-  }
-
-  private async createPuppeteer () {
-
   }
 }

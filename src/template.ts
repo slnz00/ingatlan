@@ -1,5 +1,5 @@
 import ApartmentData from 'interfaces/apartment-data.interface'
-import * as path from 'path'
+import State from 'state';
 import FSUtils from 'utils/fs.utils'
 import dayjs from 'dayjs'
 import * as Handlebars from 'handlebars'
@@ -8,8 +8,6 @@ const TEMPLATE_PATHS = {
   apartments: 'templates/apartments.html'
 }
 
-const RESULTS_PATH_BASE = 'data/results'
-
 export default class Template {
   private static _instance: Template;
 
@@ -17,15 +15,17 @@ export default class Template {
     return this._instance || (this._instance = new this());
   }
 
-  async saveResultsAsHtml (results: ApartmentData[]): Promise<string> {
-    const fileName = dayjs().format('YYYY-MM-DD_HH-mm-ss')
-    const htmlPath = path.normalize(__dirname + `/../${RESULTS_PATH_BASE}/${fileName}.html`)
+  async saveResultsAsHtml (name: string, results: ApartmentData[]): Promise<string> {
+    const state = State.instance
+
+    const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
+
+    const date = dayjs().format('YYYY-MM-DD_HH-mm-ss')
+    const fileName = `${date}.html`
     const templateSource = await FSUtils.readFile(TEMPLATE_PATHS.apartments, true)
     const template = Handlebars.compile(templateSource)
-    const generatedHtml = template({ results })
+    const generatedHtml = template({ name: capitalize(name), results })
 
-    await FSUtils.writeFile(htmlPath, generatedHtml)
-
-    return htmlPath
+    return state.saveResult(name, fileName, generatedHtml)
   }
 }

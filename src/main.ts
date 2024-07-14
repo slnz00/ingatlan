@@ -10,32 +10,35 @@ async function main() {
   const { default: open } = esm.modules.open;
 
   const state = State.instance
-  const scraper = Scraper.instance
-  const template = Template.instance
 
   await state.initialize()
 
-  for (const [name, config] of Object.entries(state.configs)) {
-    if (config.enabled === false) {
-      console.log(`[${name}] Config is disabled, skipping...`)
+  await Promise.all(
+    Object.entries(state.configs).map(async ([name, config]) => {
+      if (config.enabled === false) {
+        console.log(`[${name}] Config is disabled, skipping...`)
 
-      continue
-    }
+        return
+      }
 
-    const startedAt = new Date();
-    const newApartments = await scraper.scrapeNewApartments(name, config)
-    const timeElapsed = new Date().getTime() - startedAt.getTime()
+      const scraper = new Scraper(name, config);
+      const template = new Template(name)
 
-    if (newApartments.length) {
-      const htmlPath = await template.saveResultsAsHtml(name, newApartments)
+      const startedAt = new Date();
+      const newApartments = await scraper.scrapeNewApartments()
+      const timeElapsed = new Date().getTime() - startedAt.getTime()
 
-      console.log(`[${name}] Scraped ${newApartments.length} new apartments (took: ${timeElapsed} ms), opening browser...`)
+      if (newApartments.length) {
+        const htmlPath = await template.saveResultsAsHtml(newApartments)
 
-      await open(htmlPath).catch(err => console.error(`[${name}] Failed to open browser:`, err))
-    } else {
-      console.log(`[${name}] Could not find new apartments`)
-    }
-  }
+        console.log(`[${name}] Scraped ${newApartments.length} new apartments (took: ${timeElapsed} ms), opening browser...`)
+
+        await open(htmlPath).catch(err => console.error(`[${name}] Failed to open browser:`, err))
+      } else {
+        console.log(`[${name}] Could not find new apartments`)
+      }
+    })
+  )
 }
 
 main()

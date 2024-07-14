@@ -9,13 +9,13 @@ const TEMPLATE_PATHS = {
 }
 
 export default class Template {
-  private static _instance: Template;
+  private readonly name: string
 
-  public static get instance() {
-    return this._instance || (this._instance = new this());
+  constructor (name: string) {
+    this.name = name
   }
 
-  async saveResultsAsHtml (name: string, results: ApartmentData[]): Promise<string> {
+  async saveResultsAsHtml (results: ApartmentData[]): Promise<string> {
     const state = State.instance
 
     const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
@@ -24,8 +24,8 @@ export default class Template {
     const fileName = `${date}.html`
     const templateSource = await FSUtils.readFile(TEMPLATE_PATHS.apartments, true)
     const template = Handlebars.compile(templateSource)
-    const generatedHtml = template({ name: capitalize(name), results })
+    const generatedHtml = template({ name: capitalize(this.name), results })
 
-    return state.saveResult(name, fileName, generatedHtml)
+    return state.saveResult(this.name, fileName, generatedHtml)
   }
 }

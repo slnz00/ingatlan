@@ -1,58 +1,51 @@
 import esm from 'esm';
-import { Browser as PuppeteerBrowser, Page as PuppeteerPage } from 'puppeteer';
+import { Browser as PuppeteerBrowser, Page as PuppeteerPage } from 'puppeteer'
 
-export type Page = PuppeteerPage;
+export type Page = PuppeteerPage
 
 export default class Browser {
-  private initialized: boolean = false
-  private browser: PuppeteerBrowser | null = null
-  private page: PuppeteerPage | null = null
+  private browsers: PuppeteerBrowser[] = []
+  private pagesByName: Record<string, PuppeteerPage> = {}
 
   private static _instance: Browser;
 
   static get instance() {
-    return this._instance || (this._instance = new this());
+    return this._instance || (this._instance = new this())
   }
 
   async close () {
-    if (this.browser) {
-      await this.browser.close();
+    for (const browser of this.browsers) {
+      await browser.close();
     }
 
-    this.browser = null
-    this.page = null
-    this.initialized = false
+    this.browsers = []
+    this.pagesByName = {}
   }
 
-  async getPage (): Promise<PuppeteerPage> {
-    await this.ensureInitialized()
+  async getPage (name: string): Promise<PuppeteerPage> {
+    if (!this.pagesByName[name]) {
+      const { connect } = esm.modules['puppeteer-real-browser']
 
-    return this.page!
+      const { browser, page } = await connect({})
+
+      this.browsers.push(browser)
+      this.pagesByName[name] = page
+    }
+
+    return this.pagesByName[name]
   }
 
-  async waitForNavigationToComplete () {
-    if (!this.page) {
+  async waitForNavigationToComplete (name: string) {
+    const page = await this.getPage(name)
+
+    if (!page) {
       return
     }
 
     try {
-      await this.page!.waitForNavigation({ waitUntil: 'networkidle2', timeout: 500 })
+      await page!.waitForNavigation({ waitUntil: 'networkidle2', timeout: 500 })
     } catch (err) {}
   }
 
   private constructor() {}
-
-  private async ensureInitialized () {
-    if (this.initialized) {
-      return
-    }
-
-    const { connect } = esm.modules['puppeteer-real-browser'];
-
-    const { browser, page } = await connect({});
-
-    this.browser = browser
-    this.page = page
-    this.initialized = true
-  }
 }

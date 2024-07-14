@@ -5,32 +5,32 @@ import BaseModel from 'models/base.model'
 import State from 'state'
 
 export default class Scraper {
-  private static _instance: Scraper;
+  private readonly name: string
+  private readonly config: Config
 
-  public static get instance() {
-    return this._instance || (this._instance = new this());
+  constructor (name: string, config: Config) {
+    this.name = name
+    this.config = config
   }
 
-  private constructor() {}
-
-  async scrapeNewApartments (name: string, config: Config) {
+  async scrapeNewApartments () {
     const state = State.instance
-    const scrapedUrls = await state.getScrapedUrls(name);
+    const scrapedUrls = await state.getScrapedUrls(this.name);
 
     let hasMorePage = true
     let results: ApartmentData[] = []
     let page = 1
 
-    console.log(`[${name}] Scraping:`, this.getUrl(config))
+    console.log(`[${this.name}] Scraping:`, this.getUrl(this.config))
 
     do {
       const startedAt = new Date();
-      const url = this.getUrl(config, page)
+      const url = this.getUrl(this.config, page)
       const currentResults = await this.scrape(url)
 
       const filteredCurrentResults = currentResults
         .filter(result => {
-          if (config.excludeWithoutImage) {
+          if (this.config.excludeWithoutImage) {
             return !result.imageUrl.includes('listing-image-placeholder.svg')
           }
           return true
@@ -42,13 +42,13 @@ export default class Scraper {
 
       const took = new Date().getTime() - startedAt.getTime()
 
-      console.log(`[${name}] Scraped:`, { page, results: filteredCurrentResults.length, took })
+      console.log(`[${this.name}] Scraped:`, { page, results: filteredCurrentResults.length, took })
 
       hasMorePage = !!currentResults.length
       page++
     } while (hasMorePage)
 
-    await state.saveScrapedUrls(name, scrapedUrls)
+    await state.saveScrapedUrls(this.name, scrapedUrls)
 
     return results
   }
@@ -94,7 +94,7 @@ export default class Scraper {
 
   private async openPage(url: string): Promise<Page> {
     const browser = Browser.instance
-    const page = await browser.getPage()
+    const page = await browser.getPage(this.name)
 
     await page.goto(url)
 

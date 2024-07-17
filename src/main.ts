@@ -19,7 +19,7 @@ async function main() {
         if (nameFilter.length && !nameFilter.includes(name)) {
           return
         }
-        if (config.enabled === false) {
+        if (!nameFilter.includes(name) && config.enabled === false) {
           console.log(`[${name}] Config is disabled, skipping...`)
 
           return

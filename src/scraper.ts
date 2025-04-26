@@ -99,7 +99,7 @@ export default class Scraper {
     await page.goto(url)
 
     await page
-      .waitForSelector('.primary-header', { timeout: 10000 })
+      .waitForSelector('.primary-header', { timeout: 30000 })
       .catch(() => { throw new Error('Failed to bypass cloudflare protection') })
 
     return page

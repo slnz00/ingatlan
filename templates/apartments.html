@@ -1,43 +1,535 @@
 <html lang="hu">
 <head>
-   <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>{{name}} - Lakások, albérletek</title>
 
-    <link rel="stylesheet" href="https://ingatlan.com/build/app.css?v=627b155c253c2e6c361f">
+
+    <meta property="og:title" content="Kiadó II. kerületi, XI. kerületi, XII. kerületi lakások, albérletek">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ingatlan.com/ii-ker/kiado+lakas">
+    <meta property="og:image" content="https://assets.ingatlancdn.com/frontend/images/icon.png">
+    <meta property="og:image:height" content="512">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:type" content="image/png">
+
+    <link rel="canonical" href="https://ingatlan.com/ii-ker/kiado+lakas">
+
+    <link rel="stylesheet" href="https://assets.ingatlancdn.com/frontend/build/app-2ee072cdd2e76ecbd047.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&amp;family=Red+Hat+Display:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet" as="style" onload="this.rel='stylesheet'">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&amp;family=Red+Hat+Display:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"
+          as="style" onload="this.rel='stylesheet'">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined&amp;display=block" rel="stylesheet" as="style" onload="this.rel='stylesheet'">
-    <link rel="stylesheet" href="https://ingatlan.com/build/listings-page.css?v=4526627be018c3816cd8">
-    <link rel="shortcut icon" href="https://ingatlan.com/images/favicons/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" sizes="57x57" href="https://ingatlan.com/images/favicons/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="https://ingatlan.com/images/favicons/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="https://ingatlan.com/images/favicons/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="https://ingatlan.com/images/favicons/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="https://ingatlan.com/images/favicons/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="https://ingatlan.com/images/favicons/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="https://ingatlan.com/images/favicons/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="https://ingatlan.com/images/favicons/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://ingatlan.com/images/favicons/apple-touch-icon-180x180.png">
-    <link rel="icon" type="image/png" href="https://ingatlan.com/images/favicons/favicon-16x16.png" sizes="16x16">
-    <link rel="icon" type="image/png" href="https://ingatlan.com/images/favicons/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="https://ingatlan.com/images/favicons/favicon-96x96.png" sizes="96x96">
-    <link rel="mask-icon" href="https://ingatlan.com/images/favicons/safari-pinned-tab.svg" color="#000000">
-    <link rel="alternate" hreflang="en" href="https://realestatehungary.hu/lista/kiado+lakas+100-m2-alatt+van-legkondi+i-ker+ar-szerint-csokkeno">
-    <link rel="alternate" hreflang="de" href="https://immobilienungarn.net/lista/kiado+lakas+100-m2-alatt+van-legkondi+i-ker+ar-szerint-csokkeno">
-    <link rel="alternate" hreflang="hu" href="https://ingatlan.com/lista/kiado+lakas+100-m2-alatt+van-legkondi+i-ker+ar-szerint-csokkeno">
+
+    <link rel="stylesheet" href="https://assets.ingatlancdn.com/frontend/build/listings-page-b5629724a313f42838f5.css">
+
+    <link rel="shortcut icon" href="https://assets.ingatlancdn.com/frontend/images/favicons/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="https://assets.ingatlancdn.com/frontend/images/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://assets.ingatlancdn.com/frontend/images/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://assets.ingatlancdn.com/frontend/images/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://assets.ingatlancdn.com/frontend/images/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://assets.ingatlancdn.com/frontend/images/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://assets.ingatlancdn.com/frontend/images/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://assets.ingatlancdn.com/frontend/images/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://assets.ingatlancdn.com/frontend/images/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://assets.ingatlancdn.com/frontend/images/favicons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="https://assets.ingatlancdn.com/frontend/images/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="https://assets.ingatlancdn.com/frontend/images/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://assets.ingatlancdn.com/frontend/images/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="mask-icon" href="https://assets.ingatlancdn.com/frontend/images/favicons/safari-pinned-tab.svg" color="#000000">
+    <link rel="alternate" hreflang="en"
+          href="https://realestatehungary.hu/lista/kiado+lakas+van-legkondi+1-m2erkely-felett+tegla-epitesu-lakas+havi-180-ezer-Ft-ig+ii-ker+xi-ker+xii-ker+ar-szerint">
+    <link rel="alternate" hreflang="de"
+          href="https://immobilienungarn.net/lista/kiado+lakas+van-legkondi+1-m2erkely-felett+tegla-epitesu-lakas+havi-180-ezer-Ft-ig+ii-ker+xi-ker+xii-ker+ar-szerint">
+    <link rel="alternate" hreflang="hu"
+          href="https://ingatlan.com/lista/kiado+lakas+van-legkondi+1-m2erkely-felett+tegla-epitesu-lakas+havi-180-ezer-Ft-ig+ii-ker+xi-ker+xii-ker+ar-szerint">
     <meta name="msapplication-TileColor" content="#000000">
-    <meta name="msapplication-TileImage" content="https://ingatlan.com/images/favicons/msapplication-square-144x144.png">
+    <meta name="msapplication-TileImage" content="https://assets.ingatlancdn.com/frontend/images/favicons/msapplication-square-144x144.png">
     <meta name="theme-color" content="#d35630">
-    <meta name="msapplication-square70x70logo" content="https://ingatlan.com/images/favicons/msapplication-square-70x70.png">
-    <meta name="msapplication-square150x150logo" content="https://ingatlan.com/images/favicons/msapplication-square-150x150.png">
-    <meta name="msapplication-wide310x150logo" content="https://ingatlan.com/images/favicons/msapplication-wide-310x150.png">
-    <meta name="msapplication-square310x310logo" content="https://ingatlan.com/images/favicons/msapplication-square-310x310.png">
-    <link rel="stylesheet" type="text/css" href="https://ingatlan.com/build/5596.css?v=8e8ec5cdbd4c49332f7c">
-    <link rel="stylesheet" type="text/css" href="https://ingatlan.com/build/6722.css?v=68b7b0bd511c6ad0bfbf">
+    <meta name="msapplication-square70x70logo" content="https://assets.ingatlancdn.com/frontend/images/favicons/msapplication-square-70x70.png">
+    <meta name="msapplication-square150x150logo" content="https://assets.ingatlancdn.com/frontend/images/favicons/msapplication-square-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="https://assets.ingatlancdn.com/frontend/images/favicons/msapplication-wide-310x150.png">
+    <meta name="msapplication-square310x310logo" content="https://assets.ingatlancdn.com/frontend/images/favicons/msapplication-square-310x310.png">
+
+    <script type="text/javascript" charset="UTF-8" async="" src="https://consentcdn.cookiebot.com/consentconfig/7d00de3b-827c-4159-b631-c011e4eae86f/state.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="https://consent.cookiebot.com/Framework/IAB/consent-sdk-2.2.js"></script>
+    <script async="" src="//www.googletagmanager.com/gtm.js?id=GTM-LSRG"></script>
+    <script src="https://assets.ingatlancdn.com/frontend/js/storageKeyCategoryPairs.js?v=20241016"></script>
+    <script id="IcomConsentManager" src="https://iccm.ingatlancdn.com/iccm-2.3.2.min.js" data-id="7d00de3b-827c-4159-b631-c011e4eae86f" data-remove-href-from-links="1"
+            data-blocking-mode="1" data-throw-error="0" data-has-google-ads="1" data-iab-consent="1" data-force-tcf-consent="0" data-google-consent-mode="1"></script>
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="7d00de3b-827c-4159-b631-c011e4eae86f" data-consentmode-defaults="disabled" data-framework="TCFv2.2"
+            async=""></script>
+
+    <!-- Google Tag Manager -->
+    <script data-cookieconsent="ignore">
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || []
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' })
+        var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''
+        j.async = true
+        j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl
+        f.parentNode.insertBefore(j, f)
+      })(window, document, 'script', 'dataLayer', 'GTM-LSRG')
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <script src="https://assets.ingatlancdn.com/frontend/build/runtime-0cb4bd1c600a83fb258b.js"></script>
+    <script src="https://assets.ingatlancdn.com/frontend/build/icom-events-3841aef8936cca1456cf.js"></script>
+
+    <script src="//ad.adverticum.net/g3.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css"
+           id="CookieConsentStateDisplayStyles">.cookieconsent-optin, .cookieconsent-optin-preferences, .cookieconsent-optin-statistics, .cookieconsent-optin-marketing {
+        display: block;
+        display: initial;
+    }
+
+    .cookieconsent-optout-preferences, .cookieconsent-optout-statistics, .cookieconsent-optout-marketing, .cookieconsent-optout {
+        display: none;
+    }</style>
+    <link rel="stylesheet" type="text/css" href="https://assets.ingatlancdn.com/frontend/build/594-e176098ab243b31c5cf5.css">
+    <link rel="stylesheet" type="text/css" href="https://assets.ingatlancdn.com/frontend/build/996-37b29012721792d177dc.css">
+    <link rel="prefetch" as="style" href="https://assets.ingatlancdn.com/frontend/build/zone-selector-3f0d42093355d8098815.css">
+    <link rel="prefetch" as="script" href="https://assets.ingatlancdn.com/frontend/build/zone-selector-d255063b0396ba54be73.js">
+    <script src="https://accounts.google.com/gsi/client"></script>
+    <style id="googleidentityservice_button_styles">.qJTHM {
+        -webkit-user-select: none;
+        color: #202124;
+        direction: ltr;
+        -webkit-touch-callout: none;
+        font-family: "Roboto-Regular", arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        font-weight: 400;
+        margin: 0;
+        overflow: hidden;
+        -webkit-text-size-adjust: 100%
+    }
+
+    .ynRLnc {
+        left: -9999px;
+        position: absolute;
+        top: -9999px
+    }
+
+    .L6cTce {
+        display: none
+    }
+
+    .bltWBb {
+        word-break: break-all
+    }
+
+    .hSRGPd {
+        color: #1a73e8;
+        cursor: pointer;
+        font-weight: 500;
+        text-decoration: none
+    }
+
+    .Bz112c-W3lGp {
+        height: 16px;
+        width: 16px
+    }
+
+    .Bz112c-E3DyYd {
+        height: 20px;
+        width: 20px
+    }
+
+    .Bz112c-r9oPif {
+        height: 24px;
+        width: 24px
+    }
+
+    .Bz112c-uaxL4e {
+        -webkit-border-radius: 10px;
+        border-radius: 10px
+    }
+
+    .LgbsSe-Bz112c {
+        display: block
+    }
+
+    .S9gUrf-YoZ4jf, .S9gUrf-YoZ4jf * {
+        border: none;
+        margin: 0;
+        padding: 0
+    }
+
+    .fFW7wc-ibnC6b > .aZ2wEe > div {
+        border-color: #4285f4
+    }
+
+    .P1ekSe-ZMv3u > div:nth-child(1) {
+        background-color: #1a73e8 !important
+    }
+
+    .P1ekSe-ZMv3u > div:nth-child(2), .P1ekSe-ZMv3u > div:nth-child(3) {
+        background-image: linear-gradient(to right, rgba(255, 255, 255, .7), rgba(255, 255, 255, .7)), linear-gradient(to right, #1a73e8, #1a73e8) !important
+    }
+
+    .haAclf {
+        display: inline-block
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe {
+        -webkit-border-radius: 4px;
+        border-radius: 4px;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-transition: background-color .218s, border-color .218s;
+        transition: background-color .218s, border-color .218s;
+        -webkit-user-select: none;
+        -webkit-appearance: none;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #dadce0;
+        color: #3c4043;
+        cursor: pointer;
+        font-family: "Google Sans", arial, sans-serif;
+        font-size: 14px;
+        height: 40px;
+        letter-spacing: 0.25px;
+        outline: none;
+        overflow: hidden;
+        padding: 0 12px;
+        position: relative;
+        text-align: center;
+        vertical-align: middle;
+        white-space: nowrap;
+        width: auto
+    }
+
+    @media screen and (-ms-high-contrast: active) {
+        .nsm7Bb-HzV7m-LgbsSe {
+            border: 2px solid windowText;
+            color: windowText
+        }
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe.pSzOP-SxQuSe {
+        font-size: 14px;
+        height: 32px;
+        letter-spacing: 0.25px;
+        padding: 0 10px
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe.purZT-SxQuSe {
+        font-size: 11px;
+        height: 20px;
+        letter-spacing: 0.3px;
+        padding: 0 8px
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe.Bz112c-LgbsSe {
+        padding: 0;
+        width: 40px
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe.Bz112c-LgbsSe.pSzOP-SxQuSe {
+        width: 32px
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe.Bz112c-LgbsSe.purZT-SxQuSe {
+        width: 20px
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe.JGcpL-RbRzK {
+        -webkit-border-radius: 20px;
+        border-radius: 20px
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe.JGcpL-RbRzK.pSzOP-SxQuSe {
+        -webkit-border-radius: 16px;
+        border-radius: 16px
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe.JGcpL-RbRzK.purZT-SxQuSe {
+        -webkit-border-radius: 10px;
+        border-radius: 10px
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe.MFS4be-Ia7Qfc {
+        border: none;
+        color: #fff
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe.MFS4be-v3pZbf-Ia7Qfc {
+        background-color: #1a73e8
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe.MFS4be-JaPV2b-Ia7Qfc {
+        background-color: #202124;
+        color: #e8eaed
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe .nsm7Bb-HzV7m-LgbsSe-Bz112c {
+        height: 18px;
+        margin-right: 8px;
+        min-width: 18px;
+        width: 18px
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe.pSzOP-SxQuSe .nsm7Bb-HzV7m-LgbsSe-Bz112c {
+        height: 14px;
+        min-width: 14px;
+        width: 14px
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe.purZT-SxQuSe .nsm7Bb-HzV7m-LgbsSe-Bz112c {
+        height: 10px;
+        min-width: 10px;
+        width: 10px
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe.jVeSEe .nsm7Bb-HzV7m-LgbsSe-Bz112c {
+        margin-left: 8px;
+        margin-right: -4px
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe.Bz112c-LgbsSe .nsm7Bb-HzV7m-LgbsSe-Bz112c {
+        margin: 0;
+        padding: 10px
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe.Bz112c-LgbsSe.pSzOP-SxQuSe .nsm7Bb-HzV7m-LgbsSe-Bz112c {
+        padding: 8px
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe.Bz112c-LgbsSe.purZT-SxQuSe .nsm7Bb-HzV7m-LgbsSe-Bz112c {
+        padding: 4px
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf {
+        -webkit-border-top-left-radius: 3px;
+        border-top-left-radius: 3px;
+        -webkit-border-bottom-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        justify-content: center;
+        -webkit-align-items: center;
+        align-items: center;
+        background-color: #fff;
+        height: 36px;
+        margin-left: -10px;
+        margin-right: 12px;
+        min-width: 36px;
+        width: 36px
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf .nsm7Bb-HzV7m-LgbsSe-Bz112c, .nsm7Bb-HzV7m-LgbsSe.Bz112c-LgbsSe .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf .nsm7Bb-HzV7m-LgbsSe-Bz112c {
+        margin: 0;
+        padding: 0
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe.pSzOP-SxQuSe .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf {
+        height: 28px;
+        margin-left: -8px;
+        margin-right: 10px;
+        min-width: 28px;
+        width: 28px
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe.purZT-SxQuSe .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf {
+        height: 16px;
+        margin-left: -6px;
+        margin-right: 8px;
+        min-width: 16px;
+        width: 16px
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe.Bz112c-LgbsSe .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf {
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
+        margin-left: 2px;
+        margin-right: 0;
+        padding: 0
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe.JGcpL-RbRzK .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf {
+        -webkit-border-radius: 18px;
+        border-radius: 18px
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe.pSzOP-SxQuSe.JGcpL-RbRzK .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf {
+        -webkit-border-radius: 14px;
+        border-radius: 14px
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe.purZT-SxQuSe.JGcpL-RbRzK .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf {
+        -webkit-border-radius: 8px;
+        border-radius: 8px
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe .nsm7Bb-HzV7m-LgbsSe-bN97Pc-sM5MNb {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        justify-content: space-between;
+        -webkit-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        height: 100%;
+        position: relative;
+        width: 100%
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe .oXtfBe-l4eHX {
+        justify-content: center
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe .nsm7Bb-HzV7m-LgbsSe-BPrWId {
+        -webkit-flex-grow: 1;
+        flex-grow: 1;
+        font-family: "Google Sans", arial, sans-serif;
+        font-weight: 500;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        vertical-align: top
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe.purZT-SxQuSe .nsm7Bb-HzV7m-LgbsSe-BPrWId {
+        font-weight: 300
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe .oXtfBe-l4eHX .nsm7Bb-HzV7m-LgbsSe-BPrWId {
+        -webkit-flex-grow: 0;
+        flex-grow: 0
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe .nsm7Bb-HzV7m-LgbsSe-MJoBVe {
+        -webkit-transition: background-color .218s;
+        transition: background-color .218s;
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe:hover, .nsm7Bb-HzV7m-LgbsSe:focus {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        border-color: rgb(210, 227, 252);
+        outline: none
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe:hover .nsm7Bb-HzV7m-LgbsSe-MJoBVe, .nsm7Bb-HzV7m-LgbsSe:focus .nsm7Bb-HzV7m-LgbsSe-MJoBVe {
+        background: rgba(66, 133, 244, .04)
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe:active .nsm7Bb-HzV7m-LgbsSe-MJoBVe {
+        background: rgba(66, 133, 244, .1)
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe.MFS4be-Ia7Qfc:hover .nsm7Bb-HzV7m-LgbsSe-MJoBVe, .nsm7Bb-HzV7m-LgbsSe.MFS4be-Ia7Qfc:focus .nsm7Bb-HzV7m-LgbsSe-MJoBVe {
+        background: rgba(255, 255, 255, .24)
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe.MFS4be-Ia7Qfc:active .nsm7Bb-HzV7m-LgbsSe-MJoBVe {
+        background: rgba(255, 255, 255, .32)
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe .n1UuX-DkfjY {
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        height: 20px;
+        margin-left: -4px;
+        margin-right: 8px;
+        min-width: 20px;
+        width: 20px
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe.jVeSEe .nsm7Bb-HzV7m-LgbsSe-BPrWId {
+        font-family: "Roboto";
+        font-size: 12px;
+        text-align: left
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe.jVeSEe .nsm7Bb-HzV7m-LgbsSe-BPrWId .ssJRIf, .nsm7Bb-HzV7m-LgbsSe.jVeSEe .nsm7Bb-HzV7m-LgbsSe-BPrWId .K4efff .fmcmS {
+        overflow: hidden;
+        text-overflow: ellipsis
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe.jVeSEe .nsm7Bb-HzV7m-LgbsSe-BPrWId .K4efff {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-align-items: center;
+        align-items: center;
+        color: #5f6368;
+        fill: #5f6368;
+        font-size: 11px;
+        font-weight: 400
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe.jVeSEe.MFS4be-Ia7Qfc .nsm7Bb-HzV7m-LgbsSe-BPrWId .K4efff {
+        color: #e8eaed;
+        fill: #e8eaed
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe.jVeSEe .nsm7Bb-HzV7m-LgbsSe-BPrWId .K4efff .Bz112c {
+        height: 18px;
+        margin: -3px -3px -3px 2px;
+        min-width: 18px;
+        width: 18px
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe.jVeSEe .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf {
+        -webkit-border-top-left-radius: 0;
+        border-top-left-radius: 0;
+        -webkit-border-bottom-left-radius: 0;
+        border-bottom-left-radius: 0;
+        -webkit-border-top-right-radius: 3px;
+        border-top-right-radius: 3px;
+        -webkit-border-bottom-right-radius: 3px;
+        border-bottom-right-radius: 3px;
+        margin-left: 12px;
+        margin-right: -10px
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe.jVeSEe.JGcpL-RbRzK .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf {
+        -webkit-border-radius: 18px;
+        border-radius: 18px
+    }
+
+    .L5Fo6c-sM5MNb {
+        border: 0;
+        display: block;
+        left: 0;
+        position: relative;
+        top: 0
+    }
+
+    .L5Fo6c-bF1uUb {
+        -webkit-border-radius: 4px;
+        border-radius: 4px;
+        bottom: 0;
+        cursor: pointer;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0
+    }
+
+    .L5Fo6c-bF1uUb:focus {
+        border: none;
+        outline: none
+    }
+
+    sentinel {
+    }</style>
 </head>
+
 <body class="bg-concrete" data-new-gr-c-s-check-loaded="14.1186.0" data-gr-ext-installed="">
 
 <header class="primary-header z-index-500" data-controller="header">

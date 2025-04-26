@@ -1,8 +1,9 @@
-import Browser, { Page } from 'browser';
+import Browser, { Page } from 'browser'
 import ApartmentData from 'interfaces/apartment-data.interface'
-import Config from 'interfaces/config.interface';
+import Config from 'interfaces/config.interface'
 import BaseModel from 'models/base.model'
 import State from 'state'
+import { waitForSelector } from 'utils/puppeteer.utils'
 
 export default class Scraper {
   private readonly name: string
@@ -15,7 +16,7 @@ export default class Scraper {
 
   async scrapeNewApartments () {
     const state = State.instance
-    const scrapedUrls = await state.getScrapedUrls(this.name);
+    const scrapedUrls = await state.getScrapedUrls(this.name)
 
     let hasMorePage = true
     let results: ApartmentData[] = []
@@ -24,7 +25,7 @@ export default class Scraper {
     console.log(`[${this.name}] Scraping:`, this.getUrl(this.config))
 
     do {
-      const startedAt = new Date();
+      const startedAt = new Date()
       const url = this.getUrl(this.config, page)
       const currentResults = await this.scrape(url)
 
@@ -88,7 +89,7 @@ export default class Scraper {
             rooms: getDetail('Szobák')
           }
         })
-      );
+      )
     })
   }
 
@@ -98,8 +99,7 @@ export default class Scraper {
 
     await page.goto(url)
 
-    await page
-      .waitForSelector('.primary-header', { timeout: 30000 })
+    await waitForSelector('.primary-header', { page, timeout: 30000 })
       .catch(() => { throw new Error('Failed to bypass cloudflare protection') })
 
     return page

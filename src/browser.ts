@@ -1,5 +1,5 @@
 import esm from 'esm';
-import { Browser as PuppeteerBrowser, Page as PuppeteerPage } from 'puppeteer'
+import { Browser as PuppeteerBrowser, Page as PuppeteerPage } from 'rebrowser-puppeteer-core'
 
 export type Page = PuppeteerPage
 
@@ -26,7 +26,14 @@ export default class Browser {
     if (!this.pagesByName[name]) {
       const { connect } = esm.modules['puppeteer-real-browser']
 
-      const { browser, page } = await connect({})
+      const { browser, page } = await connect({
+        connectOption: {
+          defaultViewport: {
+            width: 0,
+            height: 0
+          }
+        }
+      })
 
       this.browsers.push(browser)
       this.pagesByName[name] = page

@@ -62,13 +62,13 @@ export default class Scraper {
 
       return Promise.resolve(
         listings.map(listing => {
-          const content = listing.querySelector('.listing-card-content .row')!
+            const content = listing.querySelector('.listing-card-content .row')!
           const mainInfo = content.querySelectorAll('.w-100')![0]
           const details = Array.from(content.querySelectorAll('.w-100')![1].querySelectorAll('div.d-flex.flex-column'))
 
           const getDetail = (name: string) => {
             const container = details.find(c => {
-              const currentName = c.querySelector('span.text-nickel')!.textContent || ''
+              const currentName = c.querySelector('span.fs-7')!.textContent || ''
               return currentName.trim() === name
             })
 
@@ -76,14 +76,14 @@ export default class Scraper {
               return ''
             }
 
-            return container.querySelector('span.text-onyx')!.textContent || ''
+            return container.querySelector('span.fs-6')!.textContent || ''
           }
 
           return {
             url: (listing as any).href,
             imageUrl: (listing.querySelector('.listing-card-image') as any || { src: '' }).src,
-            price: mainInfo.querySelector('div.d-flex span.fw-bold.text-onyx')!.textContent || '',
-            address: mainInfo.querySelector('span.d-block.text-onyx')!.textContent || '',
+            price: mainInfo.querySelector('div.d-flex span.fw-bold.fs-5.text-onyx')!.textContent || '',
+            address: mainInfo.querySelector('span.d-block.fs-7')!.textContent || '',
             area: getDetail('Alapterület'),
             balconyArea: getDetail('Erkély'),
             rooms: getDetail('Szobák')

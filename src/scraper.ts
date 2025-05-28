@@ -32,7 +32,7 @@ export default class Scraper {
       const filteredCurrentResults = currentResults
         .filter(result => {
           if (this.config.excludeWithoutImage) {
-            return !result.imageUrl.includes('listing-image-placeholder.svg')
+            return !result.imageUrl.includes('image-placeholder')
           }
           return true
         })
